@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistando - Portal de Autenticação</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-0 sm:p-4 text-white antialiased">
+
+    <!-- Container do Smartphone (Mockup Tela 0: Login e Cadastro) -->
+    <div class="w-full max-w-md h-screen sm:h-[880px] sm:rounded-[50px] shadow-2xl overflow-hidden relative border-0 sm:border-[12px] border-slate-900 bg-black flex flex-col select-none">
+        
+        <!-- Camada de Background Temática (Imagem Borrada do Rio) -->
+        <div class="absolute inset-0 bg-[url('https://temporealrj.com/wp-content/uploads/2024/02/O-Cristo-Redentor-e-um-simbolo-da-cidade-maravilhosa.png')] bg-cover bg-center opacity-25 scale-105 blur-sm z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/70 to-black z-0"></div>
+
+        <!-- Luzes decorativas de matrizes ciano e roxo -->
+        <div class="absolute top-[-5%] left-[-5%] w-[250px] h-[250px] bg-cyan-500/10 rounded-full blur-[90px] z-0"></div>
+        <div class="absolute bottom-[10%] right-[-5%] w-[250px] h-[250px] bg-purple-500/10 rounded-full blur-[90px] z-0"></div>
+
+        <!-- 1. Barra de Status Superior (Estilo iOS) -->
+        <div class="relative z-30 px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold drop-shadow-md">
+            <div>10:30</div>
+            <div class="hidden sm:block w-28 h-6 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div>
+            <div class="flex items-center space-x-1.5">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters text-sm"></i>
+            </div>
+        </div>
+
+        <!-- 2. Conteúdo Centralizado do Portal -->
+        <div class="flex-1 flex flex-col justify-between px-6 pt-8 pb-10 relative z-10 overflow-y-auto no-scrollbar">
+            
+            <!-- Branding / Identidade Visual -->
+            <div class="flex flex-col items-center text-center space-y-3 mt-4">
+                <div class="w-16 h-16 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-white/15 flex items-center justify-center shadow-xl">
+                    <i class="far fa-compass text-cyan-400 text-3xl animate-pulse"></i>
+                </div>
+                <div class="space-y-1">
+                    <h1 class="text-3xl font-black tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Turistando</h1>
+                    <p class="text-xs text-slate-400 font-medium max-w-[240px]">Explore circuitos históricos em Cidades Inteligentes auditadas</p>
+                </div>
+            </div>
+
+            <!-- Formulário e Métodos de Entrada -->
+            <div class="space-y-5 my-auto pt-6">
+                
+                <!-- BOTÃO DE DESTAQUE: GOV ID (Ângulo crítico de segurança coletiva para o Pitch) -->
+                <div class="space-y-2">
+                    <span class="text-[10px] font-black tracking-wider text-purple-400 uppercase px-1">Acesso Verificado Seguro</span>
+                    <a href="index.html" class="w-full bg-gradient-to-r from-cyan-500 via-purple-500 to-purple-600 text-slate-950 font-black text-xs py-3.5 rounded-xl flex items-center justify-center space-x-2.5 transition-transform active:scale-[0.99] shadow-lg shadow-purple-500/20 group">
+                        <i class="fas fa-user-shield text-slate-950 text-sm"></i>
+                        <span class="text-white">Entrar com ID Digital Governamental</span>
+                        <i class="fas fa-arrow-right text-[10px] text-white/70 group-hover:translate-x-0.5 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Divisor Visual -->
+                <div class="flex items-center my-4 text-slate-600 text-[10px] font-black uppercase tracking-widest">
+                    <div class="flex-1 border-t border-white/5"></div>
+                    <span class="px-3">ou credenciais padrão</span>
+                    <div class="flex-1 border-t border-white/5"></div>
+                </div>
+
+                <!-- Inputs Padrão de Login -->
+                <div class="glass-panel rounded-2xl p-4 space-y-3.5">
+                    
+                    <!-- Campo de Usuário/CPF -->
+                    <div class="space-y-1.5">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wide px-1">E-mail ou CPF</label>
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-4 top-3.5 text-slate-500 text-xs"></i>
+                            <input type="text" placeholder="ex: clark.kent@fiap.com.br" class="w-full bg-slate-950 border border-white/15 pl-10 pr-4 py-2.5 rounded-xl text-xs text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500 transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Campo de Senha -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between items-center px-1">
+                            <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Senha de Acesso</label>
+                            <a href="#" class="text-[10px] text-cyan-400 font-bold hover:underline">Esqueceu?</a>
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute left-4 top-3.5 text-slate-500 text-xs"></i>
+                            <input type="password" placeholder="••••••••••••" class="w-full bg-slate-950 border border-white/15 pl-10 pr-4 py-2.5 rounded-xl text-xs text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500 transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Botão de Entrada Convencional -->
+                    <a href="home.html" class="w-full bg-slate-800 hover:bg-slate-700 border border-white/10 text-white font-black text-xs py-3 rounded-xl flex items-center justify-center space-x-2 transition-colors mt-2">
+                        <span>Acessar Conta</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Footer / Links de Cadastro Alternativo -->
+            <div class="space-y-4 text-center mt-auto">
+                <p class="text-xs text-slate-400 font-medium">
+                    Não possui uma conta urbana? 
+                    <a href="#" class="text-purple-400 font-black hover:underline ml-1">Cadastre-se aqui</a>
+                </p>
+                
+                <!-- Alerta de Privacidade LGPD -->
+                <p class="text-[9px] text-slate-600 font-medium max-w-[280px] mx-auto leading-normal">
+                    Seus dados de navegação e geolocalização são criptografados em conformidade com as diretrizes de Smart Cities e LGPD.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

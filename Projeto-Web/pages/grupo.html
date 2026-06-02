@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistando - Grupo de Exploração Ativo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Pulsação suave para os pontos de encontro no mapa */
+        @keyframes wave-pulse {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+        .pulse-marker { animation: wave-pulse 2.5s infinite ease-in-out; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-0 sm:p-4 text-white antialiased">
+
+    <!-- Container do Smartphone (Mockup Tela 4B: Pós-Match / Central do Grupo) -->
+    <div class="w-full max-w-md h-screen sm:h-[880px] sm:rounded-[50px] shadow-2xl overflow-hidden relative border-0 sm:border-[12px] border-slate-900 bg-slate-950 flex flex-col select-none">
+        
+        <!-- Luz de fundo decorativa com o tom roxo do ecossistema social -->
+        <div class="absolute top-[-5%] left-[-5%] w-[250px] h-[250px] bg-purple-500/10 rounded-full blur-[90px] z-0"></div>
+
+        <!-- 1. Barra de Status Superior (Estilo iOS) -->
+        <div class="relative z-30 px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold bg-slate-950/90 backdrop-blur-md">
+            <div>10:35</div>
+            <div class="hidden sm:block w-28 h-6 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div>
+            <div class="flex items-center space-x-1.5">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters text-sm"></i>
+            </div>
+        </div>
+
+        <!-- 2. Header do Grupo Ativo -->
+        <div class="relative z-20 bg-slate-950/90 backdrop-blur-md border-b border-white/5 p-4 flex items-center space-x-3">
+            <a href="matches.html" class="w-9 h-9 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 active:scale-95 transition-transform">
+                <i class="fas fa-chevron-left text-slate-300 text-sm"></i>
+            </a>
+            <div class="flex-1 min-w-0">
+                <h1 class="font-black text-base text-white truncate flex items-center gap-2">
+                    Grupo de Rota Ativo
+                    <span class="bg-purple-500/20 text-purple-400 text-[10px] px-2 py-0.5 rounded-full font-black border border-purple-500/30">3 Integrantes</span>
+                </h1>
+                <p class="text-[11px] text-emerald-400 font-bold flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block animate-pulse"></span>
+                    Localização Compartilhada Ativa
+                </p>
+            </div>
+        </div>
+
+        <!-- Conteúdo Interno da Tela -->
+        <div class="flex-1 flex flex-col min-h-0 bg-slate-950/40 relative z-10">
+            
+            <!-- 3. MINI-MAPA DE APROXIMAÇÃO / PONTO DE ENCONTRO -->
+            <div class="w-full h-56 relative bg-slate-900 border-b border-white/5 overflow-hidden">
+                <!-- Print do mapa do Centro do Rio (reaproveitando a mesma lógica visual) -->
+                <img src="../images/mapa-rio.png" alt="Mapa de Aproximação" class="absolute inset-0 w-full h-full object-cover filter brightness-50 contrast-125">
+                <div class="absolute inset-0 bg-slate-950/20 mix-blend-multiply"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-60"></div>
+
+                <!-- Linha tracejada conectando os pontos (Simulação de rota de encontro) -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40">
+                    <path d="M 120 70 Q 180 90 280 130" stroke="#a855f7" stroke-width="3" stroke-dasharray="6,6" fill="transparent"/>
+                </svg>
+
+                <!-- Marcador 1: Você (Clark) -->
+                <div class="absolute top-[25%] left-[28%] flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full border-2 border-cyan-400 p-0.5 bg-slate-950 shadow-lg shadow-cyan-400/20">
+                        <img src="../images/image.png" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    <span class="text-[8px] font-black bg-slate-950/90 px-1 py-0.5 rounded border border-white/10 mt-1">Você</span>
+                </div>
+
+                <!-- Marcador 2: Sarah Jenkins (Aproximando-se) -->
+                <div class="absolute top-[52%] left-[68%] flex flex-col items-center">
+                    <div class="absolute w-10 h-10 bg-purple-500/20 rounded-full pulse-marker"></div>
+                    <div class="w-8 h-8 rounded-full border-2 border-purple-400 p-0.5 bg-slate-950 shadow-lg shadow-purple-400/20 relative z-10">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=80&auto=format&fit=crop" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    <span class="text-[8px] font-black bg-purple-950/90 text-purple-300 px-1 py-0.5 rounded border border-purple-500/20 mt-1 relative z-10 whitespace-nowrap">Sarah • 45m</span>
+                </div>
+
+                <!-- Balão Flutuante Centralizado: Ponto de Encontro Definido -->
+                <div class="absolute bottom-3 left-4 right-4 bg-slate-900/90 backdrop-blur-md border border-purple-500/30 p-2 rounded-xl flex items-center justify-between shadow-2xl">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-7 h-7 bg-purple-500/10 text-purple-400 rounded-lg flex items-center justify-center text-xs border border-purple-500/20">
+                            <i class="fas fa-map-pin"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-black text-white">Ponto de Encontro Escolhido</p>
+                            <p class="text-[9px] text-slate-400">Em frente às escadarias do Real Gabinete</p>
+                        </div>
+                    </div>
+                    <span class="text-[9px] font-black bg-purple-500/20 text-purple-300 px-2 py-1 rounded border border-purple-500/20">Trajeto Otimizado</span>
+                </div>
+            </div>
+
+            <!-- 4. CARD DE TOKEN / VALIDAÇÃO DE SEGURANÇA MÚTUA -->
+            <div class="p-4 pt-3 pb-1">
+                <div class="bg-gradient-to-r from-slate-900 via-purple-950/20 to-slate-900 border border-purple-500/20 p-3 rounded-2xl flex items-center justify-between shadow-md">
+                    <div class="space-y-0.5">
+                        <h3 class="text-[11px] font-black text-purple-400 tracking-wider uppercase"><i class="fas fa-shield-alt mr-1"></i>Código de União Mútua</h3>
+                        <p class="text-[9px] text-slate-400 leading-tight">Ao se encontrarem fisicamente, confirmem o PIN de segurança.</p>
+                    </div>
+                    <!-- Token Numérico Exibido em Destaque -->
+                    <div class="bg-slate-950 border border-white/10 px-3 py-1.5 rounded-xl text-center shadow-inner">
+                        <span class="block text-sm font-black text-white tracking-widest">4921</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. CHAT DA SPRINT COLETIVA -->
+            <div class="flex-1 flex flex-col min-h-0 px-4 py-2">
+                <h3 class="text-[10px] font-black tracking-wider text-slate-500 uppercase px-1 mb-2">Mensagens Recentes</h3>
+                
+                <!-- Área das Mensagens (Rolável internamente) -->
+                <div class="flex-1 overflow-y-auto no-scrollbar space-y-3 pr-1 text-xs font-medium">
+                    
+                    <!-- Balão 1: Sarah Jenkins -->
+                    <div class="flex items-start space-x-2.5 max-w-[85%]">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=80&auto=format&fit=crop" class="w-7 h-7 rounded-full object-cover border border-purple-500/30 mt-0.5">
+                        <div class="bg-slate-900 border border-white/5 p-2.5 rounded-2xl rounded-tl-none">
+                            <p class="text-[10px] font-black text-purple-400 mb-0.5">Sarah Jenkins</p>
+                            <p class="text-slate-200 leading-relaxed">Oi pessoal! Já estou virando a esquina da Rua Luís de Camões. Onde vocês estão?</p>
+                            <span class="block text-[8px] text-slate-500 text-right mt-1">10:33</span>
+                        </div>
+                    </div>
+
+                    <!-- Balão 2: Thiago Silva (O terceiro integrante provando o suporte a mais pessoas) -->
+                    <div class="flex items-start space-x-2.5 max-w-[85%]">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=80&auto=format&fit=crop" class="w-7 h-7 rounded-full object-cover border border-slate-700 mt-0.5">
+                        <div class="bg-slate-900 border border-white/5 p-2.5 rounded-2xl rounded-tl-none">
+                            <p class="text-[10px] font-black text-slate-300 mb-0.5">Thiago Silva</p>
+                            <p class="text-slate-200 leading-relaxed">Acabei de passar pela estátua da Praça XV, estou correndo aí pro Real Gabinete pra encontrar vocês. 2 minutinhos!</p>
+                            <span class="block text-[8px] text-slate-500 text-right mt-1">10:34</span>
+                        </div>
+                    </div>
+
+                    <!-- Balão 3: Você (Clark) -->
+                    <div class="flex items-start justify-end space-x-2.5 max-w-[85%] ml-auto">
+                        <div class="bg-purple-600 p-2.5 rounded-2xl rounded-tr-none text-white">
+                            <p class="text-[10px] font-black text-purple-200 mb-0.5">Você</p>
+                            <p class="leading-relaxed">Perfeito! Estou esperando exatamente na escadaria principal. O app gerou o PIN de confirmação 4921.</p>
+                            <span class="block text-[8px] text-purple-300 text-right mt-1">10:35</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 6. MENSAGENS RÁPIDAS DE UM TOQUE (UX ágil para quem está andando na rua) -->
+                <div class="pt-3 pb-2">
+                    <div class="flex overflow-x-auto gap-2 no-scrollbar py-0.5">
+                        <button class="flex-shrink-0 bg-slate-900 border border-white/10 hover:border-purple-500/50 text-[10px] font-bold px-3 py-1.5 rounded-xl text-slate-300 transition-colors">
+                            👍 Tô aqui na frente
+                        </button>
+                        <button class="flex-shrink-0 bg-slate-900 border border-white/10 hover:border-purple-500/50 text-[10px] font-bold px-3 py-1.5 rounded-xl text-slate-300 transition-colors">
+                            🏃‍♂️ Chego em 2 min!
+                        </button>
+                        <button class="flex-shrink-0 bg-slate-900 border border-white/10 hover:border-purple-500/50 text-[10px] font-bold px-3 py-1.5 rounded-xl text-slate-300 transition-colors">
+                            📍 Onde vocês estão?
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 7. CAIXA DE ENTRADA DO CHAT -->
+                <div class="pt-1 pb-4 flex items-center space-x-2">
+                    <div class="relative flex-1">
+                        <input type="text" placeholder="Conversar com o grupo..." class="w-full bg-slate-900 border border-white/10 rounded-xl py-2.5 pl-4 pr-10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition-all">
+                        <button class="absolute right-3 top-2.5 text-slate-500 hover:text-purple-400">
+                            <i class="fas fa-smile text-sm"></i>
+                        </button>
+                    </div>
+                    <!-- Botão Enviar -->
+                    <button class="w-9 h-9 bg-purple-600 hover:bg-purple-700 rounded-xl flex items-center justify-center text-white text-xs transition-transform active:scale-95 shadow-md shadow-purple-600/20">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

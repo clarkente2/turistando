@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistando - Modo Contemplação Ativo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Blur de fundo ultra refinado para o player */
+        .glass-player {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Animação suave para simular a pulsação do áudio ativo */
+        @keyframes pulse-cyan {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+        .active-glow { animation: pulse-cyan 3s infinite ease-in-out; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-0 sm:p-4 text-white antialiased">
+
+    <!-- Container do Smartphone (Mockup Tela 3: Central do Áudio Guia) -->
+    <div class="w-full max-w-md h-screen sm:h-[880px] sm:rounded-[50px] shadow-2xl overflow-hidden relative border-0 sm:border-[12px] border-slate-900 bg-slate-950 flex flex-col select-none">
+        
+        <!-- Background desfocado do próprio monumento para criar a atmosfera do player -->
+        <div class="absolute inset-0 bg-[url('../images/image1.png')] bg-cover bg-center scale-110 blur-xl opacity-30 z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 z-0"></div>
+
+        <!-- 1. Barra de Status Superior (Estilo iOS) -->
+        <div class="relative z-30 px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold">
+            <div>10:38</div>
+            <div class="hidden sm:block w-28 h-6 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div>
+            <div class="flex items-center space-x-1.5">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters text-sm"></i>
+            </div>
+        </div>
+
+        <!-- 2. Header de Navegação Superior -->
+        <div class="relative z-20 p-4 flex justify-between items-center">
+            <a href="roteiro.html" class="w-9 h-9 bg-slate-900/80 rounded-full flex items-center justify-center border border-white/10 active:scale-95 transition-transform">
+                <i class="fas fa-chevron-down text-slate-300 text-sm"></i>
+            </a>
+            <div class="text-center">
+                <span class="text-[9px] font-black tracking-widest text-cyan-400 uppercase bg-cyan-950/50 px-2.5 py-0.5 rounded-full border border-cyan-500/20">Modo Contemplação</span>
+            </div>
+            <!-- Indicador de Fone Conectado -->
+            <div class="w-9 h-9 bg-slate-900/80 rounded-full flex items-center justify-center border border-white/10 text-cyan-400 text-xs">
+                <i class="fas fa-headphones text-sm animate-bounce"></i>
+            </div>
+        </div>
+
+        <!-- Conteúdo Principal do Player -->
+        <div class="flex-1 flex flex-col justify-between px-5 pt-2 pb-6 relative z-10 overflow-y-auto no-scrollbar">
+            
+            <!-- Capa do "Álbum" / Detalhe do Monumento Histórico -->
+            <div class="w-56 h-56 mx-auto rounded-2xl overflow-hidden shadow-2xl border-2 border-white/10 relative group">
+                <img src="../images/image1.png" alt="Real Gabinete Português" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div class="absolute bottom-2 left-3 flex items-center space-x-1.5">
+                    <i class="fas fa-eye text-cyan-400 text-[10px]"></i>
+                    <span class="text-[10px] font-bold text-slate-200">Olhos no monumento</span>
+                </div>
+            </div>
+
+            <!-- Título e Subtítulo do Ponto Narrado -->
+            <div class="text-center mt-3">
+                <h2 class="text-xl font-black text-white tracking-tight">Real Gabinete Português</h2>
+                <p class="text-xs text-slate-400 font-medium mt-0.5">Capítulo 1 • A Fachada Manuelina</p>
+            </div>
+
+            <!-- 3. TRANSCRIÇÃO SINCRONIZADA (PIQUE SPOTIFY LYRICS) -->
+            <div class="flex-1 my-4 bg-slate-900/40 border border-white/5 rounded-2xl p-4 overflow-y-auto no-scrollbar space-y-4 font-medium text-sm text-left">
+                
+                <!-- Frase 1: Já passou (Fosca) -->
+                <p class="text-slate-600 line-through decoration-slate-800/40 transition-all duration-500 text-xs">
+                    Fundado em 1837 por um grupo de quarenta imigrantes portugueses para promover a cultura na corte imperial...
+                </p>
+
+                <!-- Frase 2: ATIVA / TOCANDO AGORA -->
+                <p class="text-white text-base font-black border-l-2 border-cyan-400 pl-3 py-0.5 tracking-wide drop-shadow-[0_0_8px_rgba(34,211,238,0.2)] active-glow">
+                    Esta fachada majestosa que você observa agora foi esculpida em pedra de lioz, trazida diretamente de Lisboa em navios no final do século XIX.
+                </p>
+
+                <!-- Frase 3: Próxima frase (Esmaecida) -->
+                <p class="text-slate-500 transition-all duration-500">
+                    Repare nos detalhes das estátuas na entrada: elas homenageiam gigantes como Luís de Camões e Pedro Álvares Cabral.
+                </p>
+
+                <!-- Frase 4: Futura (Bem fosca) -->
+                <p class="text-slate-600/50 transition-all duration-500 text-xs">
+                    Ao passarmos pelas portas de ferro fundido, a IA recalibrará para descrever a impressionante claraboia de ferro e vitrais do salão principal...
+                </p>
+            </div>
+
+            <!-- 4. Recursos Extras de Imersão e Acessibilidade -->
+            <div class="grid grid-cols-2 gap-2.5 mb-4">
+                <!-- Controle de Velocidade da Voz -->
+                <button class="bg-slate-900/80 border border-white/5 py-2 px-3 rounded-xl flex items-center justify-between text-xs font-bold text-slate-300 active:scale-95 transition-transform">
+                    <span class="text-slate-400 font-medium"><i class="fas fa-tachometer-alt mr-1.5"></i> Velocidade</span>
+                    <span class="bg-cyan-500/10 text-cyan-400 px-1.5 py-0.5 rounded font-black border border-cyan-500/20">1.25x</span>
+                </button>
+                
+                <!-- Toggle de Trilha Soundtrack de Época -->
+                <button class="bg-slate-900/80 border border-cyan-500/30 py-2 px-3 rounded-xl flex items-center justify-between text-xs font-bold text-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.05)] active:scale-95 transition-transform">
+                    <span class="font-medium"><i class="fas fa-music mr-1.5 text-cyan-400"></i> Áudio Ambiente</span>
+                    <span class="text-[10px] font-black uppercase text-emerald-400">Ligado</span>
+                </button>
+            </div>
+
+            <!-- 5. Painel Inferior de Controle de Mídia -->
+            <div class="w-full bg-slate-900/80 border border-white/10 p-4 rounded-2xl space-y-3.5 shadow-2xl">
+                
+                <!-- Barra de Progresso e Timers -->
+                <div class="space-y-1">
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden relative cursor-pointer">
+                        <div class="bg-gradient-to-r from-cyan-400 to-emerald-400 h-full w-[35%] rounded-full relative">
+                            <div class="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-white rounded-full shadow"></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between text-[10px] text-slate-400 font-bold tracking-wide">
+                        <span>01:14</span>
+                        <span>03:45</span>
+                    </div>
+                </div>
+
+                <!-- Controles Principais do Player -->
+                <div class="flex items-center justify-between px-4">
+                    <button class="text-slate-400 hover:text-white text-base active:scale-90 transition-transform">
+                        <i class="fas fa-undo-alt"></i> <span class="text-[10px] font-bold block mt-0.5">15s</span>
+                    </button>
+                    
+                    <div class="flex items-center space-x-6">
+                        <button class="text-slate-500 cursor-not-allowed text-base"><i class="fas fa-step-backward"></i></button>
+                        <button class="w-12 h-12 bg-white text-slate-950 rounded-full flex items-center justify-center text-base shadow-xl active:scale-95 transition-transform">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button class="text-slate-300 hover:text-white text-base active:scale-90 transition-transform"><i class="fas fa-step-forward"></i></button>
+                    </div>
+
+                    <button class="text-slate-400 hover:text-white text-base active:scale-90 transition-transform">
+                        <i class="fas fa-redo-alt"></i> <span class="text-[10px] font-bold block mt-0.5">15s</span>
+                    </button>
+                </div>
+
+                <!-- Botões de Emergência e Compartilhamento Amarrados -->
+                <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/5 text-[10px] font-black uppercase tracking-wider text-slate-400">
+                    <button class="hover:text-emerald-400 flex items-center justify-center space-x-1.5 py-1">
+                        <i class="fas fa-share-alt"></i> <span>Proteger Grupo</span>
+                    </button>
+                    <!-- Link Ativo apontando para sos.html -->
+                    <a href="sos.html" class="hover:text-red-400 flex items-center justify-center space-x-1.5 py-1 border-l border-white/5 text-slate-400 transition-colors">
+                        <i class="fas fa-exclamation-triangle text-red-500/70"></i> <span>SOS Canal Seguro</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

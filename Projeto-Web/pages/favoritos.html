@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistando - Meus Favoritos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-0 sm:p-4 text-white antialiased">
+
+    <!-- Container do Smartphone (Mockup Tela 6: Central de Favoritos) -->
+    <div class="w-full max-w-md h-screen sm:h-[880px] sm:rounded-[50px] shadow-2xl overflow-hidden relative border-0 sm:border-[12px] border-slate-900 bg-slate-950 flex flex-col select-none">
+        
+        <!-- Luz de fundo decorativa -->
+        <div class="absolute top-[-10%] right-[-10%] w-[280px] h-[280px] bg-cyan-500/5 rounded-full blur-[100px] z-0"></div>
+
+        <!-- 1. Barra de Status Superior (Estilo iOS) -->
+        <div class="relative z-30 px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold bg-slate-950/90 backdrop-blur-md">
+            <div>10:45</div>
+            <div class="hidden sm:block w-28 h-6 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div>
+            <div class="flex items-center space-x-1.5">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters text-sm"></i>
+            </div>
+        </div>
+
+        <!-- 2. Header de Navegação Superior -->
+        <div class="relative z-20 p-4 border-b border-white/5 bg-slate-950/80 backdrop-blur-md flex justify-between items-center">
+            <h1 class="font-black text-base text-white tracking-tight">Meus Favoritos</h1>
+            <span class="text-[10px] font-black bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-md border border-cyan-500/20 uppercase tracking-wider">3 Itens Salvos</span>
+        </div>
+
+        <!-- Sub-Navegação interna de abas (Segmented Control) -->
+        <div class="p-4 pb-1 relative z-20 bg-slate-950/40">
+            <div class="bg-slate-900 p-1 rounded-xl grid grid-cols-2 text-xs font-bold text-center border border-white/5">
+                <button class="bg-slate-800 text-cyan-400 py-2 rounded-lg shadow-md border border-white/5">
+                    <i class="fas fa-map-pin mr-1.5"></i>Locais Salvos
+                </button>
+                <button class="text-slate-400 hover:text-slate-200 py-2 rounded-lg transition-colors">
+                    <i class="fas fa-route mr-1.5"></i>Rotas
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. CONTEÚDO INTERNO ROLÁVEL -->
+        <div class="flex-1 overflow-y-auto no-scrollbar px-4 pt-2 pb-24 space-y-3.5 relative z-10">
+            
+            <!-- Item Favorito 1: Real Gabinete -->
+            <div class="bg-slate-900 p-3.5 rounded-2xl border border-white/5 flex flex-col space-y-3 relative overflow-hidden group">
+                <button class="absolute top-3 right-3 text-cyan-400 hover:text-slate-500 transition-colors z-20">
+                    <i class="fas fa-heart text-sm"></i>
+                </button>
+
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-16 h-16 rounded-xl bg-slate-800 flex-shrink-0 overflow-hidden border border-white/10">
+                        <img src="../images/image1.png" alt="Real Gabinete Português" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0 pr-4">
+                        <span class="text-[9px] font-black text-cyan-400 uppercase tracking-wider bg-cyan-500/10 border border-cyan-500/20 px-1.5 py-0.5 rounded">Biblioteca</span>
+                        <h3 class="font-bold text-sm text-white mt-1.5 truncate">Real Gabinete Português</h3>
+                        <p class="text-[10px] text-slate-400 font-medium truncate mt-0.5">Rua Luís de Camões, 30 • Centro</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-white/5 flex-wrap gap-2">
+                    <div class="flex gap-1">
+                        <span class="bg-emerald-500/10 text-emerald-400 text-[9px] font-bold px-2 py-0.5 rounded border border-emerald-500/20"><i class="fas fa-cloud-sun"></i> Climática</span>
+                        <span class="bg-purple-500/10 text-purple-400 text-[9px] font-bold px-2 py-0.5 rounded border border-purple-500/20"><i class="fas fa-university"></i> Cultural</span>
+                    </div>
+                    <a href="roteiro.html" class="text-xs font-black text-cyan-400 flex items-center space-x-1 hover:underline">
+                        <span>Ver no Circuito</span>
+                        <i class="fas fa-chevron-right text-[9px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Item Favorito 2: CCBB (Imagem Adicionada) -->
+            <div class="bg-slate-900 p-3.5 rounded-2xl border border-white/5 flex flex-col space-y-3 relative overflow-hidden group">
+                <button class="absolute top-3 right-3 text-cyan-400 hover:text-slate-500 transition-colors z-20">
+                    <i class="fas fa-heart text-sm"></i>
+                </button>
+
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-16 h-16 rounded-xl bg-slate-800 flex-shrink-0 overflow-hidden border border-white/10">
+                        <img src="https://portalbelohorizonte.com.br/sites/default/files/styles/normal_size/public/arquivos/arte-e-cultura/2021-03/ccbb-destaque-1_0.jpg?itok=ecwvkFdP" alt="CCBB Rio de Janeiro" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0 pr-4">
+                        <span class="text-[9px] font-black text-purple-400 uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 px-1.5 py-0.5 rounded">Museu / Cinema</span>
+                        <h3 class="font-bold text-sm text-white mt-1.5 truncate">CCBB - Centro Cultural Banco do Brasil</h3>
+                        <p class="text-[10px] text-slate-400 font-medium truncate mt-0.5">Rua Primeiro de Março, 66 • Centro</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-white/5 flex-wrap gap-2">
+                    <div class="flex gap-1">
+                        <span class="bg-emerald-500/10 text-emerald-400 text-[9px] font-bold px-2 py-0.5 rounded border border-emerald-500/20"><i class="fas fa-snowflake"></i> Climatizado</span>
+                        <span class="bg-amber-500/10 text-amber-400 text-[9px] font-bold px-2 py-0.5 rounded border border-amber-500/20"><i class="fas fa-wheelchair"></i> Acessível</span>
+                    </div>
+                    <span class="text-[10px] text-slate-500 font-bold bg-slate-950 px-2 py-0.5 rounded border border-white/5"><i class="fas fa-lock mr-1"></i>A 450m de você</span>
+                </div>
+            </div>
+
+            <!-- Item Favorito 3: Rota do Rio Antigo (Imagem Adicionada) -->
+            <div class="bg-gradient-to-r from-slate-900 to-purple-950/20 p-3.5 rounded-2xl border border-purple-500/20 flex flex-col space-y-3 relative overflow-hidden group">
+                <button class="absolute top-3 right-3 text-cyan-400 hover:text-slate-500 transition-colors z-20">
+                    <i class="fas fa-heart text-sm"></i>
+                </button>
+
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-16 h-16 rounded-xl bg-slate-800 flex-shrink-0 overflow-hidden border border-white/10">
+                        <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0b/21/88/cd.jpg" alt="Circuito Rio Antigo Imperial" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0 pr-4">
+                        <span class="text-[9px] font-black text-purple-400 uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 px-1.5 py-0.5 rounded">Meu Roteiro Salvo</span>
+                        <h3 class="font-bold text-sm text-white mt-1.5 truncate">Circuito Rio Antigo Imperial</h3>
+                        <p class="text-[10px] text-slate-400 font-medium truncate mt-0.5">Praça XV • Arco do Teles • CCBB • Candelária</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-purple-500/10 flex-wrap gap-2">
+                    <div class="flex items-center space-x-2 text-[10px] font-semibold text-slate-400">
+                        <span><i class="far fa-clock text-cyan-400 mr-1"></i>2h 15m</span>
+                        <span>•</span>
+                        <span class="text-emerald-400 font-black"><i class="fas fa-shield-alt mr-1"></i>100% Auditado</span>
+                    </div>
+                    <a href="roteiro.html" class="bg-purple-600 hover:bg-purple-700 text-white font-black text-[10px] py-1 px-2.5 rounded-lg transition-transform active:scale-95 shadow-md shadow-purple-600/20">
+                        Iniciar Rota
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 5. Barra de Navegação Inferior Otimizada e Amarrada -->
+        <div class="absolute bottom-0 left-0 right-0 bg-slate-900/90 backdrop-blur-md border-t border-white/10 grid grid-cols-3 py-2 z-30 shadow-[0_-2px_10px_rgba(0,0,0,0.5)]">
+            <a href="home.html" class="flex flex-col items-center space-y-0.5 text-slate-400 hover:text-slate-200">
+                <i class="fas fa-home text-lg"></i>
+                <span class="text-[10px] font-medium">Início</span>
+            </a>
+            <button class="flex flex-col items-center space-y-0.5 text-cyan-400">
+                <i class="fas fa-heart text-lg"></i>
+                <span class="text-[10px] font-bold">Favoritos</span>
+            </button>
+            <a href="perfil.html" class="flex flex-col items-center space-y-0.5 text-slate-400 hover:text-slate-200">
+                <i class="fas fa-user text-lg"></i>
+                <span class="text-[10px] font-medium">Perfil</span>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistando - Token Estudantil Smart</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Linha de Scanner Animada */
+        @keyframes scan {
+            0%, 100% { top: 0%; opacity: 0.3; }
+            50% { top: 100%; opacity: 1; }
+        }
+        .scanner-line { animation: scan 3s infinite linear; }
+        
+        /* Pulsação do brilho do QR Code */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(244, 63, 94, 0.4); }
+        }
+        .qr-glow { animation: glow 2.5s infinite ease-in-out; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-0 sm:p-4 text-white antialiased">
+
+    <!-- Container do Smartphone (Mockup Tela 5B: Validação de Token NFC/QR) -->
+    <div class="w-full max-w-md h-screen sm:h-[880px] sm:rounded-[50px] shadow-2xl overflow-hidden relative border-0 sm:border-[12px] border-slate-900 bg-slate-950 flex flex-col select-none">
+        
+        <!-- Luz de fundo decorativa Rose baseada no card da FIAP -->
+        <div class="absolute top-[-5%] right-[-5%] w-[250px] h-[250px] bg-rose-500/10 rounded-full blur-[90px] z-0"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[250px] h-[250px] bg-slate-900 rounded-full blur-[90px] z-0"></div>
+
+        <!-- 1. Barra de Status Superior (Estilo iOS) -->
+        <div class="relative z-30 px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold bg-slate-950/90 backdrop-blur-md">
+            <div>10:43</div>
+            <div class="hidden sm:block w-28 h-6 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div>
+            <div class="flex items-center space-x-1.5">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters text-sm"></i>
+            </div>
+        </div>
+
+        <!-- 2. Header de Navegação Fixo -->
+        <div class="relative z-20 bg-slate-950/90 backdrop-blur-md border-b border-white/5 p-4 flex items-center space-x-3">
+            <a href="perfil.html" class="w-9 h-9 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 active:scale-95 transition-transform">
+                <i class="fas fa-chevron-left text-slate-300 text-sm"></i>
+            </a>
+            <div class="flex-1 min-w-0">
+                <h1 class="font-black text-base text-white truncate">Token de Acesso</h1>
+                <p class="text-[11px] text-rose-400 font-bold">Passe Estudantil Bilheteria</p>
+            </div>
+        </div>
+
+        <!-- 3. Conteúdo Centralizado (Sem rolagem para focar no escaneamento) -->
+        <div class="flex-1 flex flex-col justify-between p-6 relative z-10 text-center">
+            
+            <!-- Bloco de Contexto do Estudante -->
+            <div class="bg-slate-900/60 border border-white/5 rounded-2xl p-4 mt-2">
+                <span class="text-[10px] font-black tracking-widest text-rose-500 uppercase">FIAP ADS</span>
+                <h2 class="font-bold text-sm text-white mt-0.5">Clark Kent</h2>
+                <p class="text-[11px] text-slate-400 mt-1">RM: 9XXXX • Benefício Meia-Entrada Ativo</p>
+            </div>
+
+            <!-- INTERFACE DO QR CODE COM LINHA DE SCANNER -->
+            <div class="my-auto flex flex-col items-center">
+                <div class="bg-slate-900 p-5 rounded-3xl border-2 border-rose-500/40 qr-glow relative overflow-hidden w-64 h-64 flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-950">
+                    
+                    <!-- Linha laser vermelha simulando o scanner ativo -->
+                    <div class="absolute left-0 right-0 h-0.5 bg-rose-500 shadow-[0_0_10px_#f43f5e] scanner-line z-10"></div>
+                    
+                    <!-- Ícone do QR Code centralizado -->
+                    <i class="fas fa-qrcode text-[180px] text-white opacity-90 relative z-0"></i>
+                    
+                    <!-- Cantos estilizados de foco de câmera para dar efeito premium -->
+                    <div class="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-rose-400"></div>
+                    <div class="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-rose-400"></div>
+                    <div class="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-rose-400"></div>
+                    <div class="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-rose-400"></div>
+                </div>
+
+                <!-- Contador Regressivo / Segurança Token Dinâmico -->
+                <div class="mt-5 flex items-center space-x-2 bg-rose-500/10 border border-rose-500/20 px-3 py-1.5 rounded-xl text-xs text-rose-300 font-bold">
+                    <i class="fas fa-sync-alt animate-spin text-[10px]"></i>
+                    <span>O código atualiza em: <span class="font-black text-white">42s</span></span>
+                </div>
+            </div>
+
+            <!-- Instruções Finais de Uso para a Banca -->
+            <div class="space-y-2 mb-4">
+                <div class="bg-slate-900/40 border border-white/5 p-3 rounded-xl flex items-start space-x-3 text-left">
+                    <i class="fas fa-info-circle text-cyan-400 text-sm mt-0.5"></i>
+                    <div class="flex-1">
+                        <h4 class="text-xs font-bold text-white">Como Validar?</h4>
+                        <p class="text-[10px] text-slate-400 leading-relaxed mt-0.5">Aproxime a tela do smartphone no leitor digital localizado na bilheteria física do Real Gabinete ou CCBB para liberar sua entrada automaticamente.</p>
+                    </div>
+                </div>
+                <p class="text-[9px] text-slate-500 font-medium">Autenticação criptografada via Protocolo Verde de Cidades Inteligentes.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistando - SOS Canal Seguro</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Animação de Pulsação de Alerta Máximo */
+        @keyframes alert-pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.05); }
+            50% { box-shadow: 0 0 35px rgba(239, 68, 68, 0.5); background: rgba(239, 68, 68, 0.15); }
+        }
+        .pulse-danger { animation: alert-pulse 2s infinite ease-in-out; }
+
+        @keyframes radar-scan {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        .scan-wave { animation: radar-scan 2s infinite linear; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-0 sm:p-4 text-white antialiased">
+
+    <!-- Container do Smartphone (Mockup Tela 3B: Canal de Emergência SOS) -->
+    <div class="w-full max-w-md h-screen sm:h-[880px] sm:rounded-[50px] shadow-2xl overflow-hidden relative border-0 sm:border-[12px] border-slate-900 bg-slate-950 flex flex-col select-none">
+        
+        <!-- Luz de fundo vermelha de emergência -->
+        <div class="absolute top-[-10%] left-[-10%] w-[300px] h-[300px] bg-red-600/10 rounded-full blur-[110px] z-0"></div>
+
+        <!-- 1. Barra de Status Superior (Estilo iOS) -->
+        <div class="relative z-30 px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold bg-slate-950/40">
+            <div>10:39</div>
+            <div class="hidden sm:block w-28 h-6 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div>
+            <div class="flex items-center space-x-1.5">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters text-sm text-red-500"></i>
+            </div>
+        </div>
+
+        <!-- 2. Header de Navegação Fixo (Seta de voltar desabilitada por segurança na contagem) -->
+        <div class="relative z-20 bg-slate-950/90 backdrop-blur-md border-b border-white/5 p-4 flex items-center space-x-3">
+            <div class="w-9 h-9 bg-red-950/30 rounded-full flex items-center justify-center border border-red-500/20 text-red-500">
+                <i class="fas fa-shield-alt text-sm"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+                <h1 class="font-black text-base text-white truncate">Protocolo de Emergência</h1>
+                <p class="text-[11px] text-red-400 font-bold" id="sos-subtitle">Verificação Antidisparo Ativa</p>
+            </div>
+        </div>
+
+        <!-- 3. Conteúdo Centralizado Interativo -->
+        <div class="flex-1 flex flex-col justify-between p-6 relative z-10 text-center">
+            
+            <!-- ESTADO 1: CONTAGEM REGRESSIVA (Aparece primeiro) -->
+            <div id="countdown-container" class="my-auto flex flex-col items-center space-y-8">
+                <div class="relative w-48 h-48 flex items-center justify-center">
+                    <!-- Ondas de choque do radar de perigo -->
+                    <div class="absolute inset-0 border-2 border-red-500/30 rounded-full scan-wave"></div>
+                    <div class="absolute inset-0 border-2 border-red-500/20 rounded-full scan-wave" style="animation-delay: 1s"></div>
+                    
+                    <!-- Círculo Central do Timer -->
+                    <div class="w-36 h-36 rounded-full bg-red-950/40 border-4 border-red-500 flex flex-col items-center justify-center shadow-lg shadow-red-500/20">
+                        <span id="countdown-number" class="text-6xl font-black text-white tracking-tighter">5</span>
+                        <span class="text-[10px] font-black text-red-400 uppercase tracking-wider mt-1">Segundos</span>
+                    </div>
+                </div>
+
+                <div class="space-y-2 max-w-[280px]">
+                    <h2 class="text-lg font-black text-white">Acionando Forças de Segurança...</h2>
+                    <p class="text-xs text-slate-400 leading-relaxed">Se foi um clique acidental, use o botão abaixo para cancelar imediatamente o chamado.</p>
+                </div>
+
+                <!-- Botão Cancelar Seguro -->
+                <a href="contemplacao.html" class="w-full max-w-[240px] bg-slate-900 hover:bg-slate-800 text-slate-200 font-black text-xs py-3.5 rounded-xl border border-white/10 transition-transform active:scale-95 shadow-md">
+                    <i class="fas fa-times mr-1.5"></i> Cancelar Alerta (Falso Positivo)
+                </a>
+            </div>
+
+            <!-- ESTADO 2: ALERTA DISPARADO (Oculto inicialmente, aparece via JS) -->
+            <div id="fired-container" class="my-auto hidden flex flex-col items-center space-y-6 animate-fade-in">
+                <div class="w-32 h-32 rounded-full bg-red-600 flex items-center justify-center border-4 border-white/10 shadow-[0_0_40px_rgba(239,68,68,0.7)] pulse-danger">
+                    <i class="fas fa-broadcast-tower text-4xl text-white animate-bounce"></i>
+                </div>
+
+                <div class="space-y-1.5">
+                    <h2 class="text-xl font-black text-red-500 uppercase tracking-wide">SOS Ativado com Sucesso</h2>
+                    <p class="text-xs text-slate-300 font-semibold px-4" id="geo-status">Enviando coordenadas GPS criptografadas...</p>
+                </div>
+
+                <!-- Matriz de Status de Resposta em Tempo Real -->
+                <div class="w-full bg-slate-900/80 border border-red-500/20 rounded-2xl p-4 text-left space-y-3 shadow-xl">
+                    <div class="flex items-center space-x-3 text-xs">
+                        <i class="fas fa-check-circle text-emerald-400 text-sm"></i>
+                        <div>
+                            <p class="font-black text-white">Guarda Municipal Notificada</p>
+                            <p class="text-[10px] text-slate-400">Viatura mais próxima em rota de interceptação.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 text-xs border-t border-white/5 pt-2.5">
+                        <div class="w-2 h-2 bg-red-500 rounded-full animate-ping ml-1 mr-1"></div>
+                        <div>
+                            <p class="font-black text-white flex items-center gap-1.5">
+                                Escuta de Áudio Ativa 
+                                <span class="bg-red-500/20 text-red-400 text-[8px] px-1.5 py-0.5 rounded font-black">GRAVANDO</span>
+                            </p>
+                            <p class="text-[10px] text-slate-400">Fluxo de áudio ambiente transmitido à central.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 text-xs border-t border-white/5 pt-2.5">
+                        <i class="fas fa-users-cog text-purple-400 text-sm"></i>
+                        <div>
+                            <p class="font-black text-white">Alerta de Rede Social Disparado</p>
+                            <p class="text-[10px] text-slate-400">Seus co-turistas próximos receberam sinal de apoio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão de Finalização Monitorada -->
+                <a href="contemplacao.html" class="w-full max-w-[240px] bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs py-3 rounded-xl transition-transform active:scale-95 shadow-md shadow-emerald-600/10">
+                    <i class="fas fa-lock text-[10px] mr-1"></i> Estou Seguro / Finalizar SOS
+                </a>
+            </div>
+
+            <!-- Rodapé Institucional de Proteção -->
+            <div class="text-[10px] text-slate-500 font-medium">
+                <p><i class="fas fa-phone-alt mr-1"></i> Integração Direta com Central 153 (Maricá Integrada)</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Script Inteligente de Simulação para a Banca -->
+    <script>
+        let count = 5;
+        const numberElement = document.getElementById('countdown-number');
+        const subtitleElement = document.getElementById('sos-subtitle');
+        const countdownContainer = document.getElementById('countdown-container');
+        const firedContainer = document.getElementById('fired-container');
+        const geoStatus = document.getElementById('geo-status');
+
+        const interval = setInterval(() => {
+            count--;
+            if (count > 0) {
+                numberElement.innerText = count;
+            } else {
+                clearInterval(interval);
+                // Transiciona a UI para o estado de Alerta Disparado
+                countdownContainer.classList.add('hidden');
+                firedContainer.classList.remove('hidden');
+                subtitleElement.innerText = "ALERTA MÁXIMO EM ANDAMENTO";
+                subtitleElement.classList.remove('text-red-400');
+                subtitleElement.classList.add('text-red-500', 'animate-pulse');
+                
+                // Simulação de delay de envio de coordenadas
+                setTimeout(() => {
+                    geoStatus.innerHTML = "<i class='fas fa-map-marker-alt text-red-500 mr-1 animate-bounce'></i> Centro do Rio: Lat -22.9068, Lon -43.1729";
+                }, 1500);
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
