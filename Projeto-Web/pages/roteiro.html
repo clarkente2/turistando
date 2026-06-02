@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistando - Percurso do Roteiro</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-0 sm:p-4 text-white antialiased">
+
+    <!-- Container do Smartphone (Mockup Tela 2 Oficial: Rota e Interações) -->
+    <div class="w-full max-w-md h-screen sm:h-[880px] sm:rounded-[50px] shadow-2xl overflow-hidden relative border-0 sm:border-[12px] border-slate-900 bg-slate-950 flex flex-col select-none">
+        
+        <!-- 1. Barra de Status Superior (Estilo iOS) -->
+        <div class="relative z-30 px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold bg-slate-950/90 backdrop-blur-md">
+            <div>10:35</div>
+            <div class="hidden sm:block w-28 h-6 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div>
+            <div class="flex items-center space-x-1.5">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters text-sm"></i>
+            </div>
+        </div>
+
+        <!-- 2. Header do Roteiro -->
+        <div class="relative z-20 bg-slate-950/90 backdrop-blur-md border-b border-white/5 p-4 flex items-center space-x-3">
+            <a href="index.html" class="w-9 h-9 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 active:scale-95 transition-transform">
+                <i class="fas fa-chevron-left text-slate-300 text-sm"></i>
+            </a>
+            <div class="flex-1 min-w-0">
+                <h1 class="font-black text-base text-white truncate">Rio Antigo Imperial</h1>
+                <p class="text-[11px] text-cyan-400 font-bold">Navegação por GPS Ativa</p>
+            </div>
+            <div class="flex space-x-1">
+                <span class="bg-cyan-500/10 text-cyan-400 p-1.5 rounded-lg border border-cyan-500/20 text-xs"><i class="fas fa-cloud-sun"></i></span>
+                <span class="bg-emerald-500/10 text-emerald-400 p-1.5 rounded-lg border border-emerald-500/20 text-xs"><i class="fas fa-shield-alt"></i></span>
+            </div>
+        </div>
+
+        <!-- Conteúdo Completamente Rolável -->
+        <div class="flex-1 overflow-y-auto no-scrollbar pb-10 bg-slate-950">
+            
+            <!-- 3. Mapa Estilo Google Maps (Malha Urbana + Traçado de Rota de Navegação) -->
+            <div class="w-full h-80 relative overflow-hidden border-b border-white/10 bg-[url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center">
+                <!-- Overlay Escuro para dar o tom Dark Mode do mapa do Google -->
+                <div class="absolute inset-0 bg-slate-950/50 mix-blend-multiply z-0"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-0"></div>
+                
+                <!-- SVG da Rota Real (Linha de navegação azul do Google Maps) -->
+                <svg class="absolute inset-0 w-full h-full z-10" fill="none">
+                    <!-- Sombra da rota -->
+                    <path d="M 60 260 L 140 180 L 220 180 L 250 90 L 340 70" class="stroke-cyan-500/30 stroke-[8]" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Rota ativa principal -->
+                    <path d="M 60 260 L 140 180 L 220 180 L 250 90 L 340 70" class="stroke-cyan-400 stroke-[4]" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                <!-- Pins de Navegação das Paradas -->
+                <!-- Parada 1: Check -->
+                <div class="absolute top-[245px] left-[48px] z-20 flex flex-col items-center">
+                    <div class="w-6 h-6 bg-slate-900 rounded-full flex items-center justify-center border-2 border-slate-500 shadow-md">
+                        <i class="fas fa-check text-[9px] text-slate-400"></i>
+                    </div>
+                </div>
+
+                <!-- Parada 2: VOCÊ ESTÁ AQUI (Glow Ativo) -->
+                <div class="absolute top-[148px] left-[204px] z-20 flex flex-col items-center">
+                    <!-- Pulsação do GPS do Google Maps -->
+                    <div class="absolute -top-1 w-10 h-10 bg-cyan-400/20 rounded-full animate-ping"></div>
+                    <div class="w-8 h-8 bg-slate-950 rounded-full flex items-center justify-center border-2 border-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.6)]">
+                        <i class="fas fa-street-view text-xs text-cyan-400"></i>
+                    </div>
+                    <span class="text-[9px] font-black text-cyan-300 mt-1 bg-slate-950/90 px-1.5 py-0.5 rounded border border-cyan-500/20 whitespace-nowrap">Você chegou!</span>
+                </div>
+
+                <!-- Parada 3: Bloqueada à frente -->
+                <div class="absolute top-[55px] left-[328px] z-20 flex flex-col items-center">
+                    <div class="w-6 h-6 bg-slate-950 rounded-full flex items-center justify-center border-2 border-slate-700 shadow-md">
+                        <i class="fas fa-lock text-[8px] text-slate-500"></i>
+                    </div>
+                </div>
+
+                <!-- Painel Flutuante de Instrução de Direção -->
+                <div class="absolute top-3 left-4 right-4 bg-slate-900/95 backdrop-blur-md border border-white/10 p-3 rounded-xl flex items-center space-x-3 shadow-2xl z-20">
+                    <div class="w-8 h-8 rounded-full bg-cyan-500 text-slate-950 flex items-center justify-center font-black">
+                        <i class="fas fa-arrow-up text-sm"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs font-black text-white">Siga em frente por 150 metros</p>
+                        <p class="text-[10px] text-slate-400">Destino à direita no Real Gabinete</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Seções de Paradas com Múltiplas Escolhas (Lógica de Proximidade) -->
+            <div class="p-4 space-y-4 relative z-10">
+                <h2 class="text-xs font-bold tracking-wider text-slate-400 uppercase px-1">Seu Progresso no Circuito</h2>
+                
+                <!-- TIMELINE -->
+                <div class="relative border-l border-slate-800 ml-3 pl-4 space-y-4">
+                    
+                    <!-- PARADA 1: JÁ VISITADA -->
+                    <div class="relative">
+                        <div class="absolute -left-[25px] top-1.5 w-4 h-4 rounded-full bg-slate-900 border border-slate-600 flex items-center justify-center">
+                            <div class="w-1.5 h-1.5 bg-slate-500 rounded-full"></div>
+                        </div>
+                        <div class="bg-slate-900/40 p-3 rounded-xl border border-white/5 opacity-60 space-y-2">
+                            <div>
+                                <span class="text-[9px] font-bold text-slate-500 uppercase">Parada 1 • Concluída</span>
+                                <h3 class="font-bold text-xs text-slate-300">Praça XV e Paço Imperial</h3>
+                            </div>
+                            <!-- Botões menores/secundários para locais já visitados -->
+                            <div class="grid grid-cols-3 gap-1.5 pt-1 text-[10px] font-bold">
+                                <button class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center flex items-center justify-center space-x-1">
+                                    <i class="fas fa-redo-alt text-[8px]"></i> <span>Áudio</span>
+                                </button>
+                                <button class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center flex items-center justify-center space-x-1">
+                                    <i class="fas fa-file-alt text-[8px]"></i> <span>Texto</span>
+                                </button>
+                                <button class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center flex items-center justify-center space-x-1">
+                                    <i class="fas fa-history text-[8px]"></i> <span>Fotos</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PARADA 2: FOCO ATUAL - LIBERADA POR PROXIMIDADE -->
+                    <div class="relative">
+                        <!-- Indicador Ativo -->
+                        <div class="absolute -left-[29px] top-2 w-6 h-6 rounded-full bg-cyan-950 border border-cyan-400 flex items-center justify-center shadow-[0_0_10px_rgba(34,211,238,0.4)]">
+                            <span class="text-[10px] font-black text-cyan-400">2</span>
+                        </div>
+                        
+                        <div class="bg-slate-900 p-3.5 rounded-2xl border-2 border-cyan-500/40 shadow-xl space-y-3">
+                            <div class="flex space-x-3">
+                                <div class="w-14 h-14 rounded-lg bg-slate-800 overflow-hidden flex-shrink-0 border border-white/10">
+                                    <img src="../images/image1.png" alt="Real Gabinete" class="w-full h-full object-cover">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center space-x-1.5">
+                                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+                                        <span class="text-[9px] font-black text-emerald-400 uppercase tracking-wider">Você está no local</span>
+                                    </div>
+                                    <h3 class="font-black text-sm text-white mt-0.5">Real Gabinete Português</h3>
+                                    <p class="text-[10px] text-slate-400 truncate">Sua proximidade destravou este monumento!</p>
+                                </div>
+                            </div>
+
+                            <!-- MATRIZ DE RECURSOS PEDIDA PELO USER (O GRANDE TRUNFO TÉCNICO) -->
+                            <div class="space-y-2 pt-1 border-t border-white/5">
+                                <!-- 1. Botão do Áudio Guia (Modo Contemplação LIBERADO) -->
+                                <a href="contemplacao.html" class="w-full bg-gradient-to-r from-cyan-500 to-emerald-400 hover:from-cyan-600 hover:to-emerald-500 text-slate-950 font-black text-xs py-2.5 rounded-xl flex items-center justify-center space-x-2 transition-all active:scale-[0.99] shadow-md shadow-cyan-500/10">
+                                    <i class="fas fa-headphones-alt"></i>
+                                    <span>Ativar Modo Contemplação (Áudio)</span>
+                                </a>
+                                
+                                <!-- 2. Botões Secundários: Texto e Acervo Antigo -->
+                                <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                                    <button class="py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-white/5 flex items-center justify-center space-x-1.5">
+                                        <i class="fas fa-align-left text-slate-400"></i>
+                                        <span>Ler Texto</span>
+                                    </button>
+                                    <button class="py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-white/5 flex items-center justify-center space-x-1.5">
+                                        <i class="fas fa-images text-amber-400"></i>
+                                        <span>Fotos Antigas</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PARADA 3: BLOQUEADA - DISTANTE -->
+                    <div class="relative">
+                        <div class="absolute -left-[25px] top-1.5 w-4 h-4 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center"></div>
+                        <div class="bg-slate-900/20 p-3 rounded-xl border border-white/5 space-y-3">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-[9px] font-bold text-slate-500 uppercase">Parada 3 • A Caminho (A 450m)</span>
+                                    <h3 class="font-bold text-xs text-slate-400 mt-0.5">CCBB Rio de Janeiro</h3>
+                                </div>
+                                <span class="text-[9px] bg-slate-900 text-slate-400 px-1.5 py-0.5 rounded font-bold"><i class="fas fa-street-view mr-1"></i>Bloqueado</span>
+                            </div>
+
+                            <!-- Matriz de Recursos para Ponto Distante -->
+                            <div class="space-y-2 pt-1 border-t border-white/5">
+                                <!-- Áudio Bloqueado de forma clara -->
+                                <button disabled class="w-full bg-slate-950 text-slate-600 font-bold text-xs py-2 rounded-xl flex items-center justify-center space-x-2 cursor-not-allowed border border-white/5">
+                                    <i class="fas fa-lock text-[10px]"></i>
+                                    <span>Áudio Liberado apenas no Local</span>
+                                </button>
+                                
+                                <!-- Texto e Fotos Antigas ficam liberados mesmo longe para o usuário estudar a rota antes -->
+                                <div class="grid grid-cols-2 gap-2 text-[11px] font-bold">
+                                    <button class="py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-white/5 flex items-center justify-center space-x-1.5">
+                                        <i class="fas fa-align-left text-slate-500"></i>
+                                        <span>Ler Introdução</span>
+                                    </button>
+                                    <button class="py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-white/5 flex items-center justify-center space-x-1.5">
+                                        <i class="fas fa-images text-slate-500"></i>
+                                        <span>Ver Acervo</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
