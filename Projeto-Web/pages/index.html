@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistando - Cidades Inteligentes Brasil</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Esconder barra de rolagem mantendo a funcionalidade */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Efeito de Glassmorphism refinado */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-0 sm:p-4 text-white antialiased">
+
+    <!-- Container do Smartphone (Mockup funcional) -->
+    <div class="w-full max-w-md h-screen sm:h-[880px] sm:rounded-[50px] shadow-2xl overflow-hidden relative border-0 sm:border-[12px] border-slate-900 bg-black flex flex-col select-none">
+        
+        <!-- Camada de Background do App (Imagem Real do Rio de Janeiro via Wikimedia Commons) -->
+        <div class="absolute inset-0 bg-[url('https://temporealrj.com/wp-content/uploads/2024/02/O-Cristo-Redentor-e-um-simbolo-da-cidade-maravilhosa.png')] bg-cover bg-center z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-black/50 z-0"></div>
+
+        <!-- 1. Barra de Status Superior (Estilo iOS) -->
+        <div class="relative z-10 px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold drop-shadow-md">
+            <div>10:32</div>
+            <!-- Dynamic Island Simulação para mockup moderno -->
+            <div class="hidden sm:block w-28 h-6 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div>
+            <div class="flex items-center space-x-1.5">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters text-sm"></i>
+            </div>
+        </div>
+
+        <!-- Conteúdo Superior do App -->
+        <div class="relative z-10 flex-1 flex flex-col justify-between overflow-y-auto no-scrollbar pb-[440px]">
+            
+            <!-- 2. Header do Aplicativo -->
+            <div class="px-5 pt-4 space-y-4">
+                <div class="flex justify-between items-center">
+                    <!-- Logo Turistando -->
+                    <div class="flex items-center space-x-2 bg-slate-900/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                        <i class="far fa-compass text-cyan-400 text-lg animate-pulse"></i>
+                        <span class="font-bold tracking-wide text-sm bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">Turistando</span>
+                    </div>
+                    <!-- Avatar Usuário -->
+                    <img src="../images/image.png" 
+                         alt="Sarah J." 
+                         class="w-9 h-9 rounded-full border-2 border-cyan-400 shadow-md object-cover">
+                </div>
+
+                <!-- Saudação Dinâmica -->
+                <div class="space-y-0.5 drop-shadow-lg">
+                    <h1 class="text-2xl font-bold tracking-tight text-white">Olá, Clark!</h1>
+                    <p class="text-slate-200 text-sm font-medium">Qual roteiro histórico vamos explorar hoje?</p>
+                </div>
+
+                <!-- Barra de Pesquisa -->
+                <div class="relative shadow-lg">
+                    <i class="fas fa-search absolute left-4 top-3.5 text-slate-400"></i>
+                    <input type="text" 
+                           placeholder="Buscar monumentos, marcos históricos..." 
+                           class="w-full bg-slate-900/60 backdrop-blur-xl pl-11 pr-4 py-3 rounded-xl border border-white/10 text-sm placeholder-slate-400 focus:outline-none focus:border-cyan-400 transition-all text-white">
+                </div>
+
+                <!-- Geolocalização Atual focada no contexto Brasil -->
+                <div class="flex items-center space-x-1.5 text-xs text-slate-200 font-medium bg-black/50 backdrop-blur-sm py-1 px-2.5 rounded-full w-max border border-white/5">
+                    <i class="fas fa-map-marker-alt text-rose-500"></i>
+                    <span>Rio de Janeiro, Brasil | Centro Histórico</span>
+                </div>
+            </div>
+
+            <!-- 3. Filtros Rápidos de Matrizes -->
+            <div class="mt-4 space-y-2">
+                <div class="px-5 flex justify-between items-center">
+                    <span class="text-xs font-bold tracking-wider text-slate-300 uppercase">Filtros Avançados</span>
+                    <span class="text-xs text-cyan-400 font-medium">Deslizar <i class="fas fa-chevron-right text-[10px]"></i></span>
+                </div>
+                
+                <div class="flex overflow-x-auto px-5 py-1 gap-3 no-scrollbar snap-x snap-mandatory">
+                    <!-- Climática -->
+                    <button class="snap-start flex-shrink-0 bg-slate-900/70 backdrop-blur-md px-4 py-2 rounded-xl border border-cyan-500/30 flex items-center space-x-2 text-sm text-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.15)]">
+                        <i class="fas fa-cloud-sun"></i>
+                        <span class="font-semibold">Climática</span>
+                    </button>
+                    <!-- Segura -->
+                    <button class="snap-start flex-shrink-0 bg-slate-900/70 backdrop-blur-md px-4 py-2 rounded-xl border border-emerald-500/30 flex items-center space-x-2 text-sm text-emerald-300">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="font-semibold">Segura</span>
+                    </button>
+                    <!-- Adaptada -->
+                    <button class="snap-start flex-shrink-0 bg-slate-900/70 backdrop-blur-md px-4 py-2 rounded-xl border border-amber-500/30 flex items-center space-x-2 text-sm text-amber-300">
+                        <i class="fas fa-wheelchair"></i>
+                        <span class="font-semibold">Adaptada</span>
+                    </button>
+                    <!-- Gourmet -->
+                    <button class="snap-start flex-shrink-0 bg-slate-900/70 backdrop-blur-md px-4 py-2 rounded-xl border border-purple-500/30 flex items-center space-x-2 text-sm text-purple-300">
+                        <i class="fas fa-utensils"></i>
+                        <span class="font-semibold">Gourmet</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 4. Painel Inferior Expandido: Sistema de Abas Integrado -->
+        <div class="absolute bottom-0 left-0 right-0 bg-slate-900 rounded-t-[32px] p-5 pt-4 pb-20 space-y-4 z-20 text-white shadow-[0_-10px_30px_rgba(0,0,0,0.7)] border-t border-white/10 h-[520px] overflow-y-auto no-scrollbar">
+            
+            <!-- Indicador de Arrasto Visual -->
+            <div class="w-12 h-1 bg-slate-700 rounded-full mx-auto mb-2"></div>
+
+            <!-- NAVEGAÇÃO POR ABAS INTERNAS (Link amarrado para matches.html) -->
+            <div class="flex border-b border-white/10 pb-2 text-sm font-bold">
+                <button class="text-cyan-400 border-b-2 border-cyan-400 pb-2 px-1 tracking-tight">
+                    <i class="fas fa-route mr-1"></i> Roteiros Inteligentes
+                </button>
+                <a href="matches.html" class="text-slate-400 hover:text-slate-200 pb-2 px-1 ml-6 flex items-center space-x-1.5 tracking-tight">
+                    <i class="fas fa-users text-purple-400"></i> 
+                    <span>Matches Ativos</span>
+                    <span class="bg-purple-600 text-white text-[9px] px-1.5 py-0.5 rounded-full font-black animate-pulse">2</span>
+                </a>
+            </div>
+
+            <!-- LISTA DE ROTEIROS SELECIONÁVEIS -->
+            <div class="space-y-3.5 pt-1">
+                
+                <!-- Rota Inicial 1: Circuito Rio Antigo (ATIVA) -->
+                <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-cyan-500/30 flex flex-col space-y-3 shadow-[0_0_15px_rgba(34,211,238,0.05)]">
+                    <div class="flex items-start space-x-3.5">
+                        <div class="w-16 h-16 rounded-xl bg-slate-800 flex-shrink-0 overflow-hidden border border-white/10 flex items-center justify-center">
+                            <img src="../images/image1.png" alt="Real Gabinete Português" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-bold text-sm text-white truncate">Circuito Rio Antigo Imperial</h3>
+                            <p class="text-[11px] text-slate-400 font-medium mt-0.5 truncate">Praça XV • Arco do Teles • CCBB • Candelária</p>
+                            
+                            <div class="flex items-center space-x-3 mt-2 text-[11px] font-semibold text-slate-300">
+                                <span class="flex items-center space-x-1">
+                                    <i class="far fa-clock text-cyan-400"></i>
+                                    <span>2h 15min</span>
+                                </span>
+                                <span class="text-slate-600">•</span>
+                                <span class="flex items-center space-x-1">
+                                    <i class="fas fa-bolt text-amber-400"></i>
+                                    <span>Fácil (Plano)</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-1.5 pt-1 border-t border-white/5 justify-between items-center">
+                        <div class="flex gap-1.5">
+                            <span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-md border border-emerald-500/20 flex items-center space-x-1">
+                                <i class="fas fa-shield-alt text-[9px]"></i> <span>Rota Segura</span>
+                            </span>
+                            <span class="bg-cyan-500/10 text-cyan-400 text-[10px] font-bold px-2 py-0.5 rounded-md border border-cyan-500/20 flex items-center space-x-1">
+                                <i class="fas fa-cloud-sun text-[9px]"></i> <span>Rota Climática</span>
+                            </span>
+                        </div>
+
+                        <!-- Link Ativo para a Rota do Rio -->
+                        <a href="roteiro.html" class="bg-cyan-500 hover:bg-cyan-600 text-slate-950 text-[11px] font-black py-1 px-3 rounded-lg flex items-center space-x-1 transition-colors active:scale-95">
+                            <span>Acessar Roteiro</span>
+                            <i class="fas fa-arrow-right text-[9px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Rota Inicial 2: Pelourinho Cultural (SEM BOTÃO DE ACESSO) -->
+                <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-white/5 flex flex-col space-y-3">
+                    <div class="flex items-start space-x-3.5">
+                        <div class="w-16 h-16 rounded-xl bg-slate-800 flex-shrink-0 overflow-hidden border border-white/10 flex items-center justify-center">
+                            <img src="../images/download.jpeg" alt="Pelourinho Salvador" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-bold text-sm text-white truncate">Caminhos do Pelourinho Histórico</h3>
+                            <p class="text-[11px] text-slate-400 font-medium mt-0.5 truncate">Largo do Pelourinho • Terreiro de Jesus • Elevador Lacerda</p>
+                            
+                            <div class="flex items-center space-x-3 mt-2 text-[11px] font-semibold text-slate-300">
+                                <span class="flex items-center space-x-1">
+                                    <i class="far fa-clock text-cyan-400"></i>
+                                    <span>1h 45min</span>
+                                </span>
+                                <span class="text-slate-600">•</span>
+                                <span class="flex items-center space-x-1">
+                                    <i class="fas fa-bolt text-amber-400"></i>
+                                    <span>Média (Ladeiras)</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-1.5 pt-1 border-t border-white/5 justify-between items-center">
+                        <div class="flex gap-1.5">
+                            <span class="bg-purple-500/10 text-purple-400 text-[10px] font-bold px-2 py-0.5 rounded-md border border-purple-500/20 flex items-center space-x-1">
+                                <i class="fas fa-utensils text-[9px]"></i> <span>Rota Gourmet</span>
+                            </span>
+                            <span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-md border border-emerald-500/20 flex items-center space-x-1">
+                                <i class="fas fa-shield-alt text-[9px]"></i> <span>Rota Segura</span>
+                            </span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-bold bg-slate-900 px-2 py-1 rounded-md"><i class="fas fa-map-marked-alt mr-1"></i>Fora da sua Região</span>
+                    </div>
+                </div>
+
+                <!-- Rota Inicial 3: Trilha Ouro Preto Barroca (SEM BOTÃO DE ACESSO) -->
+                <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-white/5 flex flex-col space-y-3">
+                    <div class="flex items-start space-x-3.5">
+                        <div class="w-16 h-16 rounded-xl bg-slate-800 flex-shrink-0 overflow-hidden border border-white/10 flex items-center justify-center">
+                            <img src="../images/1756520790.png" alt="Ouro Preto Minas Gerais" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-bold text-sm text-white truncate">Trilha Aleijadinho e Barroco</h3>
+                            <p class="text-[11px] text-slate-400 font-medium mt-0.5 truncate">Praça Tiradentes • Igreja São Francisco de Assis • Museu</p>
+                            
+                            <div class="flex items-center space-x-3 mt-2 text-[11px] font-semibold text-slate-300">
+                                <span class="flex items-center space-x-1">
+                                    <i class="far fa-clock text-cyan-400"></i>
+                                    <span>3h 10min</span>
+                                </span>
+                                <span class="text-slate-600">•</span>
+                                <span class="flex items-center space-x-1">
+                                    <i class="fas fa-bolt text-rose-500"></i>
+                                    <span class="text-rose-400">Alta (Declives)</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-1.5 pt-1 border-t border-white/5 justify-between items-center">
+                        <div class="flex gap-1.5">
+                            <span class="bg-cyan-500/10 text-cyan-400 text-[10px] font-bold px-2 py-0.5 rounded-md border border-cyan-500/20 flex items-center space-x-1">
+                                <i class="fas fa-cloud-sun text-[9px]"></i> <span>Rota Climática</span>
+                            </span>
+                            <span class="bg-amber-500/10 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded-md border border-amber-500/20 flex items-center space-x-1">
+                                <i class="fas fa-university text-[9px]"></i> <span>Rota Cultural</span>
+                            </span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-bold bg-slate-900 px-2 py-1 rounded-md"><i class="fas fa-map-marked-alt mr-1"></i>Fora da sua Região</span>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO VISUAL DE CO-TURISTAS -->
+                <div class="pt-4 border-t border-white/10 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xs font-bold tracking-wider text-purple-400 uppercase"><i class="fas fa-street-view mr-1"></i> Co-Turistas na Rota do Rio</h4>
+                        <span class="text-[10px] text-slate-400">Compartilhando Trajeto</span>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-950/40 to-slate-950 p-3 rounded-xl border border-purple-500/20 flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=80&auto=format&fit=crop" class="w-9 h-9 rounded-full object-cover border border-purple-400">
+                                <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border border-slate-900"></div>
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-white">Sarah Jenkins</h5>
+                                <p class="text-[10px] text-slate-400">Também vai para: Real Gabinete</p>
+                            </div>
+                        </div>
+                        <a href="matches.html" class="bg-purple-600 hover:bg-purple-700 text-white font-bold text-[10px] px-3 py-1.5 rounded-lg transition-transform active:scale-95">
+                            <i class="fas fa-user-plus mr-1"></i> Unir Grupo
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 5. Barra de Navegação Inferior Nativa do PWA (Com Link Ativo de Perfil no último botão) -->
+        <div class="absolute bottom-0 left-0 right-0 bg-slate-900/90 backdrop-blur-md border-t border-white/10 grid grid-cols-4 py-2 z-30 shadow-[0_-2px_10px_rgba(0,0,0,0.5)]">
+            <button class="flex flex-col items-center space-y-0.5 text-cyan-400">
+                <i class="fas fa-home text-lg"></i>
+                <span class="text-[10px] font-bold">Início</span>
+            </button>
+            <a href="roteiro.html" class="flex flex-col items-center space-y-0.5 text-slate-400 hover:text-slate-200">
+                <i class="fas fa-compass text-lg"></i>
+                <span class="text-[10px] font-medium">Explorar</span>
+            </a>
+            <button class="flex flex-col items-center space-y-0.5 text-slate-400 hover:text-slate-200">
+                <i class="fas fa-heart text-lg"></i>
+                <span class="text-[10px] font-medium">Favoritos</span>
+            </button>
+            <!-- LINK DE PERFIL AMARRADO PERFEITAMENTE AQUI -->
+            <a href="perfil.html" class="flex flex-col items-center space-y-0.5 text-slate-400 hover:text-slate-200">
+                <i class="fas fa-user text-lg"></i>
+                <span class="text-[10px] font-medium">Perfil</span>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

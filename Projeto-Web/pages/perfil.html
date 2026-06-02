@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turistando - Meu Perfil Smart</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-0 sm:p-4 text-white antialiased">
+
+    <!-- Container do Smartphone (Mockup Tela Perfil Oficial) -->
+    <div class="w-full max-w-md h-screen sm:h-[880px] sm:rounded-[50px] shadow-2xl overflow-hidden relative border-0 sm:border-[12px] border-slate-900 bg-slate-950 flex flex-col select-none">
+        
+        <!-- Luz de fundo decorativa -->
+        <div class="absolute top-[-10%] left-[-10%] w-[280px] h-[280px] bg-cyan-500/5 rounded-full blur-[100px] z-0"></div>
+
+        <!-- 1. Barra de Status Superior (Estilo iOS) -->
+        <div class="relative z-30 px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold bg-slate-950/90 backdrop-blur-md">
+            <div>10:42</div>
+            <div class="hidden sm:block w-28 h-6 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div>
+            <div class="flex items-center space-x-1.5">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters text-sm"></i>
+            </div>
+        </div>
+
+        <!-- 2. Header Superior -->
+        <div class="relative z-20 p-4 flex items-center space-x-4 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
+            <a href="index.html" class="w-9 h-9 bg-slate-900/80 rounded-full flex items-center justify-center border border-white/10 active:scale-95 transition-transform">
+                <i class="fas fa-chevron-left text-slate-300 text-sm"></i>
+            </a>
+            <h1 class="font-black text-base text-white tracking-tight">Meu Perfil Urbano</h1>
+        </div>
+
+        <!-- 3. CONTEÚDO INTERNO ROLÁVEL -->
+        <div class="flex-1 overflow-y-auto no-scrollbar px-5 pt-5 pb-28 min-h-0 space-y-5 relative z-10">
+            
+            <!-- Cartão de Identidade Principal (Dados Anônimos para Demonstração) -->
+            <div class="flex items-center space-x-4 bg-gradient-to-r from-slate-900 to-slate-950 p-4 rounded-2xl border border-white/5 shadow-xl">
+                <div class="relative">
+                    <img src="../images/image.png" alt="Usuário Teste" class="w-16 h-16 rounded-full border-2 border-cyan-400 object-cover shadow-md">
+                    <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-slate-950"></span>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <h2 class="font-black text-base text-white tracking-tight truncate">Clark Kent</h2>
+                    <p class="text-xs text-slate-400 font-medium truncate">Estudante • Rio de Janeiro - RJ</p>
+                    <span class="inline-block bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[9px] font-bold px-2 py-0.5 rounded-md mt-1.5 uppercase tracking-wider">Perfil Verificado</span>
+                </div>
+            </div>
+
+            <!-- Telemetria e Estatísticas Acumuladas de Exploração -->
+            <div class="grid grid-cols-3 gap-2.5">
+                <div class="glass-card p-3 rounded-xl text-center space-y-0.5">
+                    <i class="fas fa-walking text-cyan-400 text-sm"></i>
+                    <span class="block text-base font-black text-white">34.2 km</span>
+                    <span class="block text-[9px] text-slate-400 font-bold uppercase tracking-tight">Caminhados</span>
+                </div>
+                <div class="glass-card p-3 rounded-xl text-center space-y-0.5">
+                    <i class="fas fa-route text-emerald-400 text-sm"></i>
+                    <span class="block text-base font-black text-white">4 Rotas</span>
+                    <span class="block text-[9px] text-slate-400 font-bold uppercase tracking-tight">Concluídas</span>
+                </div>
+                <div class="glass-card p-3 rounded-xl text-center space-y-0.5">
+                    <i class="fas fa-headphones-alt text-amber-400 text-sm"></i>
+                    <span class="block text-base font-black text-white">12h</span>
+                    <span class="block text-[9px] text-slate-400 font-bold uppercase tracking-tight">Áudio Guia</span>
+                </div>
+            </div>
+
+            <!-- CARTEIRA ESTUDANTIL DIGITAL: FIAP ADS CONFIGURADA -->
+            <div class="space-y-2">
+                <h3 class="text-xs font-black tracking-wider text-slate-400 uppercase px-1">Carteira Estudantil Digital</h3>
+                <div class="bg-gradient-to-br from-rose-950/20 via-slate-900 to-slate-900 p-4 rounded-2xl border border-rose-500/30 relative overflow-hidden shadow-lg">
+                    <div class="absolute top-0 right-0 p-3 opacity-10">
+                        <i class="fas fa-university text-5xl text-rose-500"></i>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <!-- Identificação Estudantil FIAP ADS para validação do Professor -->
+                            <span class="text-[10px] font-black tracking-widest text-rose-500 uppercase">FIAP</span>
+                            <h4 class="text-sm font-black text-white mt-0.5">Análise e Desenvolvimento de Sistemas</h4>
+                            <p class="text-[10px] text-slate-400 font-medium mt-1">RM: 9XXXX • Semestre: 2026/1</p>
+                        </div>
+                        <div class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] font-bold px-2 py-0.5 rounded flex items-center space-x-1">
+                            <span class="w-1 h-1 bg-emerald-400 rounded-full inline-block"></span>
+                            <span>Benefício Meia-Entrada</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-2.5 border-t border-white/5 flex justify-between items-center text-[10px] font-bold text-slate-300">
+                        <span><i class="fas fa-qrcode mr-1.5 text-rose-400"></i>Validação Automática via GPS</span>
+                        <span class="text-rose-400">Ver Token</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONFIGURAÇÕES DE ROTA COMPLETAS -->
+            <div class="space-y-2">
+                <h3 class="text-xs font-black tracking-wider text-slate-400 uppercase px-1">Preferências de Navegação Smart</h3>
+                <div class="glass-card rounded-xl text-xs font-medium text-slate-200 overflow-hidden divide-y divide-white/5">
+                    
+                    <!-- Idioma do Áudio -->
+                    <div class="p-3.5 flex justify-between items-center">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fas fa-globe-americas text-cyan-400 w-4 text-center"></i>
+                            <span>Idioma da Narração</span>
+                        </div>
+                        <select class="bg-slate-950 border border-white/10 rounded-md text-[11px] px-2 py-1 text-cyan-400 font-bold focus:outline-none focus:border-cyan-400">
+                            <option>Português (PT-BR)</option>
+                            <option>English (EN)</option>
+                            <option>Español (ES)</option>
+                        </select>
+                    </div>
+
+                    <!-- Ritmo de Caminhada -->
+                    <div class="p-3.5 flex justify-between items-center">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fas fa-tachometer-alt text-purple-400 w-4 text-center"></i>
+                            <span>Ritmo de Caminhada</span>
+                        </div>
+                        <select class="bg-slate-950 border border-white/10 rounded-md text-[11px] px-2 py-1 text-purple-400 font-bold focus:outline-none focus:border-purple-400">
+                            <option>Passeio (Lento)</option>
+                            <option selected>Moderado (Padrão)</option>
+                            <option>Esportivo (Rápido)</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro Climático -->
+                    <div class="p-3.5 flex justify-between items-center">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fas fa-cloud-sun text-cyan-400 w-4 text-center"></i>
+                            <span>Priorizar Rotas Climáticas (Sombras)</span>
+                        </div>
+                        <div class="w-7 h-4 bg-cyan-500 rounded-full relative p-0.5 cursor-pointer"><div class="w-3 h-3 bg-slate-950 rounded-full absolute right-0.5"></div></div>
+                    </div>
+
+                    <!-- Filtro Segurança -->
+                    <div class="p-3.5 flex justify-between items-center">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fas fa-shield-alt text-emerald-400 w-4 text-center"></i>
+                            <span>Foco Extremo em Vias Seguras</span>
+                        </div>
+                        <div class="w-7 h-4 bg-cyan-500 rounded-full relative p-0.5 cursor-pointer"><div class="w-3 h-3 bg-slate-950 rounded-full absolute right-0.5"></div></div>
+                    </div>
+
+                    <!-- Filtro de Relevo / Acessibilidade -->
+                    <div class="p-3.5 flex justify-between items-center">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fas fa-wheelchair text-amber-400 w-4 text-center"></i>
+                            <span>Evitar Escadarias e Ladeiras Íngremes</span>
+                        </div>
+                        <div class="w-7 h-4 bg-slate-800 rounded-full relative p-0.5 cursor-pointer"><div class="w-3 h-3 bg-slate-400 rounded-full absolute left-0.5"></div></div>
+                    </div>
+
+                    <!-- Alertas Hápticos -->
+                    <div class="p-3.5 flex justify-between items-center">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fas fa-mobile-alt text-rose-400 w-4 text-center"></i>
+                            <span>Vibrar no Bolso ao Aproximar de Marcos</span>
+                        </div>
+                        <div class="w-7 h-4 bg-cyan-500 rounded-full relative p-0.5 cursor-pointer"><div class="w-3 h-3 bg-slate-950 rounded-full absolute right-0.5"></div></div>
+                    </div>
+
+                    <!-- Modo Offline -->
+                    <div class="p-3.5 flex justify-between items-center">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fas fa-download text-blue-400 w-4 text-center"></i>
+                            <span>Baixar Mídias e Mapas via Wi-Fi</span>
+                        </div>
+                        <div class="w-7 h-4 bg-cyan-500 rounded-full relative p-0.5 cursor-pointer"><div class="w-3 h-3 bg-slate-950 rounded-full absolute right-0.5"></div></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Dispositivos de Áudio Pareados -->
+            <div class="space-y-2">
+                <h3 class="text-xs font-black tracking-wider text-slate-400 uppercase px-1">Dispositivos de Áudio Detectados</h3>
+                <div class="glass-card p-3.5 rounded-xl space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 bg-slate-950 rounded-lg flex items-center justify-center border border-cyan-500/20 text-cyan-400">
+                                <i class="fas fa-headphones text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">Fone Wireless Premium</h4>
+                                <p class="text-[9px] text-slate-400">Cancelamento de Ruído Adaptativo Ativo</p>
+                            </div>
+                        </div>
+                        <span class="text-[9px] font-black bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded border border-cyan-500/20">Conectado</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 5. Barra de Navegação Inferior Nativa do PWA -->
+        <div class="absolute bottom-0 left-0 right-0 bg-slate-900/90 backdrop-blur-md border-t border-white/10 grid grid-cols-4 py-2 z-30 shadow-[0_-2px_10px_rgba(0,0,0,0.5)]">
+            <a href="index.html" class="flex flex-col items-center space-y-0.5 text-slate-400 hover:text-slate-200">
+                <i class="fas fa-home text-lg"></i>
+                <span class="text-[10px] font-medium">Início</span>
+            </a>
+            <a href="roteiro.html" class="flex flex-col items-center space-y-0.5 text-slate-400 hover:text-slate-200">
+                <i class="fas fa-compass text-lg"></i>
+                <span class="text-[10px] font-medium">Explorar</span>
+            </a>
+            <button class="flex flex-col items-center space-y-0.5 text-slate-400 hover:text-slate-200">
+                <i class="fas fa-heart text-lg"></i>
+                <span class="text-[10px] font-medium">Favoritos</span>
+            </button>
+            <button class="flex flex-col items-center space-y-0.5 text-cyan-400">
+                <i class="fas fa-user text-lg"></i>
+                <span class="text-[10px] font-bold">Perfil</span>
+            </button>
+        </div>
+
+    </div>
+
+</body>
+</html>
