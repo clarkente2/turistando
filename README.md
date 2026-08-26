@@ -32,34 +32,34 @@ Assista ao pitch e à apresentação da solução no YouTube:
   <table>
     <tr>
       <td align="center" width="33%">
-        <img src="assets/01-login.png" width="240px" alt="Tela de Autenticação Segura" /><br />
+        <img src="assets/login.png" width="240px" alt="Tela de Autenticação Segura" /><br />
         <b>1. Acesso & Autenticação</b><br />
         <i>Login Seguro com ID Digital Governamental e Conformidade LGPD</i>
       </td>
       <td align="center" width="33%">
-        <img src="assets/02-roteiros.png" width="240px" alt="Roteiros Inteligentes" /><br />
+        <img src="assets/roteiros.png" width="240px" alt="Roteiros Inteligentes" /><br />
         <b>2. Roteiros Inteligentes</b><br />
         <i>Rotas Climáticas, Seguras e Adaptadas à Acessibilidade</i>
       </td>
       <td align="center" width="33%">
-        <img src="assets/03-matches.png" width="240px" alt="Matches da Região" /><br />
+        <img src="assets/matches.png" width="240px" alt="Matches da Região" /><br />
         <b>3. Turismo Coletivo</b><br />
         <i>Varredura de Proximidade e Grupos com Identidade Auditada</i>
       </td>
     </tr>
     <tr>
       <td align="center" width="33%">
-        <img src="assets/04-navegacao.png" width="240px" alt="Navegação GPS Ativa" /><br />
+        <img src="assets/navegacao.png" width="240px" alt="Navegação GPS Ativa" /><br />
         <b>4. Navegação & Checkpoints</b><br />
         <i>GPS em Tempo Real e Desbloqueio Georreferenciado</i>
       </td>
       <td align="center" width="33%">
-        <img src="assets/05-modo-contemplacao.png" width="240px" alt="Modo Contemplação" /><br />
+        <img src="assets/modo-contemplacao.png" width="240px" alt="Modo Contemplação" /><br />
         <b>5. Modo Contemplação</b><br />
         <i>Player de Áudio Imersivo: "Olhos no Monumento"</i>
       </td>
       <td align="center" width="33%">
-        <img src="assets/06-perfil.png" width="240px" alt="Perfil e Acessibilidade" /><br />
+        <img src="assets/perfil.png" width="240px" alt="Perfil e Acessibilidade" /><br />
         <b>6. Perfil & Preferências Smart</b><br />
         <i>Carteira Estudantil Digital FIAP e Métricas de Caminhada</i>
       </td>
