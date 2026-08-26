@@ -37,33 +37,33 @@ Assista ao pitch e à apresentação da solução no YouTube:
         <i>Login Seguro com ID Digital Governamental e Conformidade LGPD</i>
       </td>
 
-      <td align="center" width="33%">
+  <td align="center" width="33%">
         <img src="assets/roteiros.png.png" width="240px" alt="Roteiros Inteligentes" /><br />
         <b>2. Roteiros Inteligentes</b><br />
         <i>Rotas Climáticas, Seguras e Adaptadas à Acessibilidade</i>
       </td>
 
-      <td align="center" width="33%">
+  <td align="center" width="33%">
         <img src="assets/matches.png.png" width="240px" alt="Matches da Região" /><br />
         <b>3. Turismo Coletivo</b><br />
         <i>Varredura de Proximidade e Grupos com Identidade Auditada</i>
       </td>
     </tr>
 
-    <tr>
+  <tr>
       <td align="center" width="33%">
         <img src="assets/navegacao.png.png" width="240px" alt="Navegação GPS Ativa" /><br />
         <b>4. Navegação & Checkpoints</b><br />
         <i>GPS em Tempo Real e Desbloqueio Georreferenciado</i>
       </td>
 
-      <td align="center" width="33%">
+  <td align="center" width="33%">
         <img src="assets/-modo-contemplacao.png.png" width="240px" alt="Modo Contemplação" /><br />
         <b>5. Modo Contemplação</b><br />
         <i>Player de Áudio Imersivo: "Olhos no Monumento"</i>
       </td>
 
-      <td align="center" width="33%">
+  <td align="center" width="33%">
         <img src="assets/perfil.png.png" width="240px" alt="Perfil e Acessibilidade" /><br />
         <b>6. Perfil & Preferências Smart</b><br />
         <i>Carteira Estudantil Digital FIAP e Métricas de Caminhada</i>
