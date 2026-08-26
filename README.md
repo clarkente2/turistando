@@ -54,7 +54,7 @@ Assista ao pitch e à apresentação da solução no YouTube:
         <i>GPS em Tempo Real e Desbloqueio Georreferenciado</i>
       </td>
       <td align="center" width="33%">
-        <img src="assets/modo-contemplacao.png" width="240px" alt="Modo Contemplação" /><br />
+        <img src="turistando/assets/modo-contemplacao.png" width="240px" alt="Modo Contemplação" /><br />
         <b>5. Modo Contemplação</b><br />
         <i>Player de Áudio Imersivo: "Olhos no Monumento"</i>
       </td>
